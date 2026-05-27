@@ -1,0 +1,2 @@
+docker pull --platform linux/ppc64le nvcr.io/nvidia/cuda:12.2.2-devel-ubuntu22.04
+docker pull --platform linux/ppc64le nvcr.io/nvidia/cuda:12.2.2-runtime-ubuntu22.04
