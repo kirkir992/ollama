@@ -28,4 +28,7 @@ docker exec -it awx_task awx-manage dumpdata \
   > /u01/awx_data_export.json
 
 docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_data_export.json
+[root@LXMASTER01 baza]# docker exec -it tools_ascender_1 ascender-manage loaddata awx_data_export.json
+CommandError: No fixture named 'awx_data_export' found.
+[root@LXMASTER01 baza]#
 
