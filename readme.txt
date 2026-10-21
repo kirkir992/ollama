@@ -89,6 +89,8 @@ docker cp /u01/awx_only_config.json tools_ascender_1:/tmp/awx_only_config.json
 docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_only_config.json
 
 docker exec -it tools_postgres_1 psql -U awx -d awx -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+docker exec -t <nazwa_kontenera_postgres_awx> pg_dumpall -c -U awx > awx_backup.sql
+
 docker exec -i tools_postgres_1 psql -U awx -d awx < /u01/awx_backup.sql
 
 docker exec -it tools_ascender_1 ascender-manage migrate
