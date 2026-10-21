@@ -19,3 +19,10 @@ drwxr-xr-x 3 root root  17 Mar 26  2021 python
 Unknown command: 'export_fixtures'. Did you mean export_emails?
 Type 'awx-manage help' for usage.
 [root@LXMASTER02 u01]#
+docker exec -it awx_task awx-manage dumpdata \
+  --indent=2 \
+  --exclude=auth.Permission \
+  --exclude=contenttypes \
+  --exclude=main.activitystream \
+  --exclude=sessions \
+  > /u01/awx_data_export.json
