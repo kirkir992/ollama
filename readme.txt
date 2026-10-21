@@ -95,3 +95,6 @@ docker exec -i tools_postgres_1 psql -U awx -d awx < /u01/awx_backup.sql
 
 docker exec -it tools_ascender_1 ascender-manage migrate
 
+[root@PRDADMINOS01 baza]# docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_only_config.json
+CommandError: No fixture named 'awx_only_config' found.
+[root@PRDADMINOS01 baza]#
