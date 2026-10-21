@@ -72,3 +72,24 @@ Traceback (most recent call last):
     stream_or_string = stream_or_string.read()
 MemoryError: Problem installing fixture '/tmp/awx_data_export.json':
 
+docker exec -it awx_task awx-manage dumpdata \
+  --indent=2 \
+  --exclude=auth.Permission \
+  --exclude=contenttypes \
+  --exclude=main.activitystream \
+  --exclude=main.jobevent \
+  --exclude=main.job \
+  --exclude=main.unifiedjob \
+  --exclude=main.jobhostsummary \
+  --exclude=sessions \
+  > /u01/awx_only_config.json
+
+
+docker cp /u01/awx_only_config.json tools_ascender_1:/tmp/awx_only_config.json
+docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_only_config.json
+
+docker exec -it tools_postgres_1 psql -U awx -d awx -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+docker exec -i tools_postgres_1 psql -U awx -d awx < /u01/awx_backup.sql
+
+docker exec -it tools_ascender_1 ascender-manage migrate
+
