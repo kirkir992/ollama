@@ -198,3 +198,7 @@ Traceback (most recent call last):
     raise ex.with_traceback(None)
 django.db.utils.IntegrityError: Problem installing fixture '/tmp/awx_data_export.json': Could not load auth.User(pk=2): duplicate key value violates unique constraint "auth_user_username_key"
 DETAIL:  Key (username)=(admin) already exists.
+docker exec -it tools_ascender_1 ascender-manage flush --no-input
+
+docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_only_config.json
+docker compose -f tools/docker-compose.yml restart
