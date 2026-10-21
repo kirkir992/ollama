@@ -7,3 +7,15 @@ ca75eb0a24dd   redis                "docker-entrypoint.s…"   5 years ago   Up 
 docker exec -it awx_task awx-manage export_fixtures > /root/awx_data_export.json
 docker cp /root/awx_data_export.json tools_ascender_1:/tmp/awx_data_export.json
 docker exec -it tools_ascender_1 ascender-manage import_fixtures /tmp/awx_data_export.json
+docker exec -it awx_task awx-manage export_fixtures > awx_data_export.json
+[root@LXMASTER02 u01]# ll -ltr
+total 4
+drwxr-xr-x 3 root root  17 Apr  8  2020 db
+drwxr-xr-x 3 root root  17 Mar 25  2021 certifications
+drwxr-xr-x 4 root root  31 Mar 25  2021 install
+drwxr-xr-x 3 root root  17 Mar 26  2021 python
+-rw-r----- 1 root root 100 Oct 21 13:17 awx_data_export.json
+[root@LXMASTER02 u01]# cat awx_data_export.json
+Unknown command: 'export_fixtures'. Did you mean export_emails?
+Type 'awx-manage help' for usage.
+[root@LXMASTER02 u01]#
