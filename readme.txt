@@ -34,3 +34,41 @@ CommandError: No fixture named 'awx_data_export' found.
 docker cp awx_data_export.json tools_ascender_1:/tmp/awx_data_export.json
 docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_data_export.json
 
+
+[root@PRDADMINOS01 baza]# docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_data_export.json
+Traceback (most recent call last):
+  File "/usr/local/bin/ascender-manage", line 17, in <module>
+    load_entry_point('ascender', 'console_scripts', 'ascender-manage')()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/ascender_devel/ascender/__init__.py", line 133, in manage
+    execute_from_command_line(sys.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/management/__init__.py", line 443, in execute_from_command_line
+    utility.execute()
+    ~~~~~~~~~~~~~~~^^
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/management/__init__.py", line 437, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/management/base.py", line 422, in run_from_argv
+    self.execute(*args, **cmd_options)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/management/base.py", line 466, in execute
+    output = self.handle(*args, **options)
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/management/commands/loaddata.py", line 103, in handle
+    self.loaddata(fixture_labels)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/management/commands/loaddata.py", line 164, in loaddata
+    self.load_label(fixture_label)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/management/commands/loaddata.py", line 244, in load_label
+    objects = serializers.deserialize(
+        ser_fmt,
+    ...<3 lines>...
+        handle_forward_references=True,
+    )
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/serializers/__init__.py", line 146, in deserialize
+    return d(stream_or_string, **options)
+  File "/var/lib/ascender/venv/ascender/lib64/python3.14/site-packages/django/core/serializers/json.py", line 66, in __init__
+    stream_or_string = stream_or_string.read()
+MemoryError: Problem installing fixture '/tmp/awx_data_export.json':
+
