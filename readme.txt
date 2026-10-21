@@ -26,3 +26,6 @@ docker exec -it awx_task awx-manage dumpdata \
   --exclude=main.activitystream \
   --exclude=sessions \
   > /u01/awx_data_export.json
+
+docker exec -it tools_ascender_1 ascender-manage loaddata /tmp/awx_data_export.json
+
